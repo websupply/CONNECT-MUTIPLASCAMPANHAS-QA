@@ -4,9 +4,8 @@ Testes automatizados (Postman/Newman) dessa funcionalidade.
 
 ## Dashboard
 
-[Ver dashboard de qualidade]([https://websupply.github.io/NOME-DO-REPOSITORIO/](https://adamcy11.github.io/CONNECT-MUTIPLASCAMPANHAS-QA/))
+[Ver dashboard de qualidade](https://adamcy11.github.io/CONNECT-MUTIPLASCAMPANHAS-QA/)
 
-> Troque `NOME-DO-REPOSITORIO` pelo nome real do repositório assim que criar/transferir para a organização.
 
 O dashboard mostra a taxa de sucesso, resultado por requisição, detalhamento de falhas e histórico das últimas execuções.
 
