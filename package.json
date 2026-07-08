@@ -1,0 +1,13 @@
+{
+  "name": "connect-crawler-qa",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Testes automatizados de API (Postman/Newman) do projeto Multiplas campanhas",
+  "scripts": {
+    "dashboard": "node scripts/generate-dashboard.js",
+    "email-report": "node scripts/email-report.js"
+  },
+  "dependencies": {
+    "newman": "^6.2.1"
+  }
+}
