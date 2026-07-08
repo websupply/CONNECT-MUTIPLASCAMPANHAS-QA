@@ -1,0 +1,3937 @@
+{
+	"info": {
+		"_postman_id": "d55657b3-e3ae-47ee-a13a-b51044762ea9",
+		"name": "[QA] Permitir Campanha com Múltiplos Códigos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "56206216",
+		"_collection_link": "https://go.postman.co/collection/56206216-d55657b3-e3ae-47ee-a13a-b51044762ea9?source=collection_link"
+	},
+	"item": [
+		{
+			"name": "01 - Smoke",
+			"item": [
+				{
+					"name": "[SMOKE] Criar campanha nova com um único código (sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica sucesso\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.true;\r",
+									"    pm.expect(response.message).to.include(\"criada com sucesso\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo error é null\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.error).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo data existe na resposta\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property(\"data\");\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const campanhaId = response.data.id;"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "automação teste {{timestamp}}",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp}}",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-02",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-07-31",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[SMOKE] Criar campanha nova com um único código (sucesso)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "automação teste {{timestamp}}",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp}}",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-02",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-07-31",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 200
+								},
+								{
+									"key": "date",
+									"value": "Tue, 07 Jul 2026 17:18:18 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=687M9Z1SjuC5olphnBj9ZkTrCmn4Cs6pnYQbRx2mRpH2Oi%2Fb7tjz4iOYKuGBRDxQkNtZAgpr3SQoP6UkPnh08FJrK%2BBrvOESogkiEI5zd2fyBdZUXvFnIH0F7GxhJAM6VRtc6AVff14bN17b49sPtZ8Yqp34hg%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a17881f0d9fbf260-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Campanha 'automação teste 711' criada com sucesso.\",\n    \"data\": {},\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "[SMOKE] Criar campanha nova com múltiplos códigos (sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica sucesso\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.true;\r",
+									"    pm.expect(response.message).to.include(\"criada com sucesso\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo error é null\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.error).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo data existe na resposta\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property(\"data\");\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const campanhaId = response.data.id;"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "automação teste {{timestamp}}",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp}}",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp2}}",
+									"type": "text",
+									"uuid": "4ad0ad0e-5b3d-4fe3-91e2-2e44203eaf12"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp3}}",
+									"type": "text",
+									"uuid": "ff69906d-e340-4cc3-992b-e6f487131013"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-06-27",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-07-31",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[SMOKE] Criar campanha nova com múltiplos códigos (sucesso)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "automação teste {{timestamp}}",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp}}",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp2}}",
+											"type": "text",
+											"uuid": "4ad0ad0e-5b3d-4fe3-91e2-2e44203eaf12"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp3}}",
+											"type": "text",
+											"uuid": "ff69906d-e340-4cc3-992b-e6f487131013"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-06-27",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-07-31",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 200
+								},
+								{
+									"key": "date",
+									"value": "Tue, 07 Jul 2026 17:20:13 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=xIfpi74i2q5v7itR%2FFXuL5t1uit1Z5oRq87FsDC8h54%2Fvpja1kjbeSctcdjvH9XvTgX7dLhjB7N%2BbOgPRXneR68F4ZS8pqPw5JaiA6J6ih47kZU3v2MIk%2Fc%2FXyakc1wZEHsWrapiJEe2Nx66IB0lqNenJXcGKg%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a17884c1d9e0f214-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Campanha 'automação teste 065' criada com sucesso.\",\n    \"data\": {},\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "[SMOKE] Criar campanha nova com múltiplas empresas/esquipes (sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica sucesso\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.true;\r",
+									"    pm.expect(response.message).to.include(\"criada com sucesso\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo error é null\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.error).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo data existe na resposta\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property(\"data\");\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const campanhaId = response.data.id;"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "automação teste {{timestamp}}",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp}}",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp2}}",
+									"type": "text",
+									"uuid": "4ad0ad0e-5b3d-4fe3-91e2-2e44203eaf12"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp3}}",
+									"type": "text",
+									"uuid": "ff69906d-e340-4cc3-992b-e6f487131013"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "empresaEquipes[1].empresaId",
+									"value": "32",
+									"type": "text",
+									"uuid": "66bf68a6-9e1b-4027-b604-542f76c1fcc6"
+								},
+								{
+									"key": "empresaEquipes[1].equipeId",
+									"value": "32",
+									"type": "text",
+									"uuid": "25593f1b-702f-4046-9f8e-962c64626b32"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-06-27",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-07-31",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[SMOKE] Criar campanha nova com múltiplas empresas/esquipes (sucesso)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "automação teste {{timestamp}}",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp}}",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp2}}",
+											"type": "text",
+											"uuid": "4ad0ad0e-5b3d-4fe3-91e2-2e44203eaf12"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp3}}",
+											"type": "text",
+											"uuid": "ff69906d-e340-4cc3-992b-e6f487131013"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "empresaEquipes[1].empresaId",
+											"value": "32",
+											"type": "text",
+											"uuid": "66bf68a6-9e1b-4027-b604-542f76c1fcc6"
+										},
+										{
+											"key": "empresaEquipes[1].equipeId",
+											"value": "32",
+											"type": "text",
+											"uuid": "25593f1b-702f-4046-9f8e-962c64626b32"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-06-27",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-07-31",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 200
+								},
+								{
+									"key": "date",
+									"value": "Tue, 07 Jul 2026 17:25:05 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=s2Uj0ykBGoA75jiWg%2FE1RrOENaH2v1%2Bnj6zzKB8mXvf6tH7jP0uomsqX%2BVkhi34geLfNpvb5%2F3Fc%2Fgr5SXopJF5OUn%2BsEZa1c3SFyCg%2BVp2Qw%2Fs0KKzkbbJ98yWAdzVld9lfpy3Jy7d9I%2Bgl%2FDUh%2F45P5ZlrMg%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a1788be3282b52b4-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Campanha 'automação teste 174' criada com sucesso.\",\n    \"data\": {},\n    \"error\": null\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "02 - Regra de Negócio",
+			"item": [
+				{
+					"name": "[REGRA] Criação de campanha sem período sobreposto (mesmo código)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Testes de validação\r",
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica sucesso\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.true;\r",
+									"    pm.expect(response.message).to.include(\"criada com sucesso\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const campanhaId = response.data.id;"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const ano = 2027 + Math.floor(Math.random() * 73);\r",
+									"const mes = String(Math.floor(Math.random() * 12) + 1).padStart(2, \"0\");\r",
+									"const diaInicio = String(Math.floor(Math.random() * 14) + 1).padStart(2, \"0\");\r",
+									"const diaFim = String(Math.floor(Math.random() * 14) + 15).padStart(2, \"0\");\r",
+									"\r",
+									"pm.environment.set(\"dataInicio\", `${ano}-${mes}-${diaInicio}`);\r",
+									"pm.environment.set(\"dataFim\", `${ano}-${mes}-${diaFim}`);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "automação teste {{timestamp}}",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "666",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "{{dataInicio}}",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "{{dataFim}}",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[REGRA] Criação de campanha sem período sobreposto (mesmo código)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "automação teste {{timestamp}}",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "666",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "{{dataInicio}}",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "{{dataFim}}",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 200
+								},
+								{
+									"key": "date",
+									"value": "Tue, 07 Jul 2026 19:07:17 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=YAqkwutYsbKDAMANISP%2BggIcFxBFxoFhx9VVR1cJALCyf7zodX0%2BQpyr0gU62c7DN40UfVuLacZUn6NwdCjtnr1u51jSSbLeJPJHDmSljZRx4aOZIrljrQGkzUWeDVSMd4n2F5%2FL42NX8JFm2HF98vh99gCFQA%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a179219c489fda2e-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Campanha 'automação teste 747' criada com sucesso.\",\n    \"data\": {},\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "[REGRA] Criação de campanha com período sobreposto (código diferente)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica sucesso\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.true;\r",
+									"    pm.expect(response.message).to.include(\"criada com sucesso\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo error é null\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.error).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo data existe na resposta\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property(\"data\");\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const campanhaId = response.data.id;"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "automação teste",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp}}",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-12-14",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-12-20",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[REGRA] Criação de campanha com período sobreposto (código diferente)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "automação teste",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp}}",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-12-14",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-12-20",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 200
+								},
+								{
+									"key": "date",
+									"value": "Tue, 07 Jul 2026 19:09:42 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=5Ch3mFpZ%2FQtOkOp3AoGyY%2FcPtDv2EkV%2FzmMax77h8%2Fd7DEakQXrhIWeIC00w9WMn6tBY0JMY5RQnYNHjN3BqzoY2CzfMkqQwJd36%2Fr04sY%2FwJhjruRJUqHilxflHj4wEW7qfykKoebik1i2OOC5ddjR5RHV24A%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a1792522dd83d457-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Campanha 'automação teste 178' criada com sucesso.\",\n    \"data\": {},\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "03 - Negativos",
+			"item": [
+				{
+					"name": "[NEG] Criar uma campanha com códigos duplicados",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica falha\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.false;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Mensagem informa códigos duplicados\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.message).to.include(\"códigos duplicados\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Nenhuma campanha foi criada (data é null)\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.data).to.be.null;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "campanha com mesmo nome e Código",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "11",
+									"type": "text",
+									"uuid": "ad854f30-577b-4419-b635-2a7342154619"
+								},
+								{
+									"key": "Codigos",
+									"value": "11",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-05",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[NEG] Criar uma campanha com códigos duplicados",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "campanha com mesmo nome e Código",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "11",
+											"type": "text",
+											"uuid": "ad854f30-577b-4419-b635-2a7342154619"
+										},
+										{
+											"key": "Codigos",
+											"value": "11",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-05",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Tue, 07 Jul 2026 16:55:07 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=7ejeOiumbKkfkKL8g4asiBilVtdjNlqB565VyYMosVi9TW%2F1RLrLqJCeVPqN5rN0cDAU9ckD5mfKq8EpOUfAZXgNr5Pnz6UKcK7o9nnD4e80vYxUtiijx56ircirtRKglwxw9FOz7E%2BLw3rPXYgUyMW8TB8UvQ%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a1785ffeeedcf1cd-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Não pode ter códigos duplicados na campanha.\",\n    \"data\": null,\n    \"error\": \"WebsupplyConnect.Application.Common.AppException: Não pode ter códigos duplicados na campanha.\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 46\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 111\\r\\n   at WebsupplyConnect.API.Controllers.Campanha.CampanhaController.CriarCampanha(CriarCampanhaDTO request) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.API\\\\Controllers\\\\Campanha\\\\CampanhaController.cs:line 64\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[NEG] Criação de campanha com período sobreposto (mesmo código)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica falha\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.false;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Mensagem informa sobreposição de período\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.message).to.include(\"campanha vigente com o código '777' no período 14/12/2026 a 20/12/2026.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Nenhuma campanha foi criada (data é null)\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.data).to.be.null;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "automação (não apagar)",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "777",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-12-14",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-12-20",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[NEG] Criação de campanha com período sobreposto (mesmo código)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "teste cenário 9 nome diferente",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "777",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-15",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-15",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Fri, 03 Jul 2026 14:00:24 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=WI2RliOoBqbX5eRtywhY8fo6EBj6WUbGjS63zBqfIb%2FfHhUj2HQZ2CJJ1m%2BaL0G%2FoWznSHQUkJ215npI7u%2FKH077D89NMfeyBCbWY8FRU2NTIWC1300sHeqv%2Bm14JTpT9SPlK9DjYW%2BMhyA1CM92zMyPYDBwtQ%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a1566a90eff6f1e9-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Já existe uma campanha vigente com o código '777' no período 01/07/2026 a 31/07/2026.\",\n    \"data\": null,\n    \"error\": \"WebsupplyConnect.Application.Common.AppException: Já existe uma campanha vigente com o código '777' no período 01/07/2026 a 31/07/2026.\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.ValidarSobreposicaoPeriodoAsync(String codigo, List`1 empresaIds, DateTime dataInicio, Nullable`1 dataFim, Int32 grupoEmpresaId, Nullable`1 ignorarCampanhaId) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 290\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 70\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 110\\r\\n   at WebsupplyConnect.API.Controllers.Campanha.CampanhaController.CriarCampanha(CriarCampanhaDTO request) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.API\\\\Controllers\\\\Campanha\\\\CampanhaController.cs:line 64\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[NEG]  Data de Fim anterior à Data de Início",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica falha\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.false;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data de fim deve ser maior que a data de início.\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.message).to.include(\"A data de fim não pode ser anterior à data de início.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Nenhuma campanha foi criada (data é nulo)\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.data).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "mutiplas campanhas",
+									"type": "text",
+									"uuid": "638d7b9e-6454-4c52-9433-009f55654dde"
+								},
+								{
+									"key": "Codigos",
+									"value": "777",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "empresaEquipes[1].empresaId",
+									"value": "32",
+									"type": "text",
+									"uuid": "323b3c09-281a-4a95-90bb-8f10992dd7e9"
+								},
+								{
+									"key": "empresaEquipes[1].equipeId",
+									"value": "32",
+									"type": "text",
+									"uuid": "0aa2f7d0-20b3-4b6e-9e45-c81f9ff5f08c"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-08-01",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-07-20",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[NEG]  Data de Fim anterior à Data de Início",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "mutiplas campanhas",
+											"type": "text",
+											"uuid": "638d7b9e-6454-4c52-9433-009f55654dde"
+										},
+										{
+											"key": "Codigos",
+											"value": "777",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "empresaEquipes[1].empresaId",
+											"value": "32",
+											"type": "text",
+											"uuid": "323b3c09-281a-4a95-90bb-8f10992dd7e9"
+										},
+										{
+											"key": "empresaEquipes[1].equipeId",
+											"value": "32",
+											"type": "text",
+											"uuid": "0aa2f7d0-20b3-4b6e-9e45-c81f9ff5f08c"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-08-01",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-07-20",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Fri, 03 Jul 2026 15:52:52 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=WJ7suWje5grgn06jyfsSaFEdSZwz5jftpwZUtCGENx%2BEzq%2BH7W0V41gMRTZaLL%2FqGKFLj7HHjXR%2BaYMFznSt0dl%2FwCqUKtNwqsZRBmTol2%2FSLNoECzGG21%2BifPogvozzi04ezZz%2F9YTgohGqkYP1MKKMuCLbCg%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a1570f4cbc4902f8-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data de fim deve ser maior que a data de início.\",\n    \"data\": null,\n    \"error\": \"WebsupplyConnect.Application.Common.AppException: Data de fim deve ser maior que a data de início.\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 47\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 109\\r\\n   at WebsupplyConnect.API.Controllers.Campanha.CampanhaController.CriarCampanha(CriarCampanhaDTO request) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.API\\\\Controllers\\\\Campanha\\\\CampanhaController.cs:line 64\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[NEG] Criar campanha nova com múltiplas empresas de grupos empresariais diferentes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica falha\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.false;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Mensagem informa que empresas devem pertencer ao mesmo grupo empresarial\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.message).to.include(\"mesmo grupo empresarial\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Nenhuma campanha foi criada (data é nulo)\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.data).to.be.null;\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "cenario 2",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp}}",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp2}}",
+									"type": "text",
+									"uuid": "4ad0ad0e-5b3d-4fe3-91e2-2e44203eaf12"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp3}}",
+									"type": "text",
+									"uuid": "ff69906d-e340-4cc3-992b-e6f487131013"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "empresaEquipes[1].empresaId",
+									"value": "9",
+									"type": "text",
+									"uuid": "66bf68a6-9e1b-4027-b604-542f76c1fcc6"
+								},
+								{
+									"key": "empresaEquipes[1].equipeId",
+									"value": "51",
+									"type": "text",
+									"uuid": "25593f1b-702f-4046-9f8e-962c64626b32"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-06-27",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-07-31",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[NEG] Criar campanha nova com múltiplas empresas de grupos empresariais diferentes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "cenario 2",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp}}",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp2}}",
+											"type": "text",
+											"uuid": "4ad0ad0e-5b3d-4fe3-91e2-2e44203eaf12"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp3}}",
+											"type": "text",
+											"uuid": "ff69906d-e340-4cc3-992b-e6f487131013"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "empresaEquipes[1].empresaId",
+											"value": "9",
+											"type": "text",
+											"uuid": "66bf68a6-9e1b-4027-b604-542f76c1fcc6"
+										},
+										{
+											"key": "empresaEquipes[1].equipeId",
+											"value": "51",
+											"type": "text",
+											"uuid": "25593f1b-702f-4046-9f8e-962c64626b32"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-06-27",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-07-31",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 500
+								},
+								{
+									"key": "date",
+									"value": "Mon, 06 Jul 2026 15:52:43 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=CY0kwkEaUU%2B%2FvUXQqAbrD0xM5N4BWCHbIn87Ra%2BapFj3FGvY3t%2BgnLKDBtTnAfKycwoMnDcQMPwMz4z0MVDJrJTuZLQ8H2%2BRTnpv7FJYRsHtPaG%2FiUhYxmh9zKAbX9bfjV3YCJ2zI1L1bxwC8pXCgrp8NfGXnA%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a16fc733edae5b62-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Todas as empresas devem pertencer ao mesmo grupo empresarial.\",\n    \"data\": null,\n    \"error\": \"WebsupplyConnect.Domain.Exceptions.DomainException: Todas as empresas devem pertencer ao mesmo grupo empresarial.\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 56\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 109\\r\\n   at WebsupplyConnect.API.Controllers.Campanha.CampanhaController.CriarCampanha(CriarCampanhaDTO request) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.API\\\\Controllers\\\\Campanha\\\\CampanhaController.cs:line 64\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "04 - Validation",
+			"item": [
+				{
+					"name": "[VAL] Campo \"Data de Início\" inválido/vazio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica erro de validação\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.status).to.eql(400);\r",
+									"    pm.expect(response.title).to.include(\"validation errors\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo DataInicio está presente nos erros\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.errors).to.have.property(\"DataInicio\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "Cenário 16",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "7562",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-08-20",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[VAL] Campo \"Data de Início\" inválido/vazio",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "dataInicio",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "7562",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "werwerwer",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-20",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Fri, 03 Jul 2026 14:51:16 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=06I57J4C3d5w4aAoWKIJ4mDP1EUyOFZa0o3q4ALqSHsq83OZ9UoEKww1O4oDmeuV32KON9LvcHGSgpUZa%2B02FsLcvk6qjPVSqD%2FfYlb2a2XZ1XxgOtAXLJw%2B4GsjwhDLLh9OUZrkRxQPolWfYUdmraOXaDxByA%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a156b5126c50e16e-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"errors\": {\n        \"DataInicio\": [\n            \"The value 'werwerwer' is not valid.\"\n        ]\n    },\n    \"traceId\": \"00-a03b1049684f411a5c05780ad2f712ad-cebba24b6b13ebb6-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[VAL] Campo \"Data de Início\" inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica falha\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.false;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Mensagem informa que Data de Início é obrigatória\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.message).to.include(\"obrigatória\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Nenhuma campanha foi criada (data é nulo)\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.data).to.be.null;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "Cenário 16",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "7562",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-12",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314",
+									"disabled": true
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-08-20",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[VAL] Campo \"Data de Início\" inexistente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "Cenário 16",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "7562",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-12",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314",
+											"disabled": true
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-20",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Tue, 07 Jul 2026 16:38:55 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=9P%2BkEWvwAT7i0LoOm%2FldLETcXnrsjulAJ7aeGodMtWp3donQ0%2FvlQdrV%2Bk9vWqOtvP0HNtxmd4uuzSUySsB6pR8Xign3GsRf8%2BjbbTI2rMnztzhAfjJAGcKcGsUpEdAvphwNJ82us1BwrIObCBizEklPGS0xLg%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a178484659f4cb2a-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data de início é obrigatória.\",\n    \"data\": null,\n    \"error\": \"WebsupplyConnect.Application.Common.AppException: Data de início é obrigatória.\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 46\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 111\\r\\n   at WebsupplyConnect.API.Controllers.Campanha.CampanhaController.CriarCampanha(CriarCampanhaDTO request) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.API\\\\Controllers\\\\Campanha\\\\CampanhaController.cs:line 64\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[VAL] Campo \"Empresas e Equipes\" inválido/vazio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica erro de validação\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.status).to.eql(400);\r",
+									"    pm.expect(response.title).to.include(\"validation errors\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo EmpresaEquipes está presente nos erros\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    const temEmpresa = response.errors.hasOwnProperty(\"EmpresaEquipes[0].EmpresaId\");\r",
+									"    const temEquipe = response.errors.hasOwnProperty(\"EmpresaEquipes[0].EquipeId\");\r",
+									"    pm.expect(temEmpresa || temEquipe).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "Cenário 15",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "7562",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "wer",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-15",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-08-15",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[VAL] Campo \"Empresas e Equipes\" inválido/vazio",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "Cenário 15",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "7562",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "wer",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-15",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-15",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Fri, 03 Jul 2026 15:24:29 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=dTUKY60B%2Fbd1IygpmF2YTNfzpY90NXxNyLAczCg1PJguor2hBc32xLho4QKOVjOzoneNInBQbMkdCGmxhfPayB9Y8dH%2B6AYWGNhjmtU2Kv23CsIIMoTdIzoOhb9Vpp1rzuWLHQaAmQSI9wgKaeKsdZ2LrgOdEg%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a156e5be4f010131-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"errors\": {\n        \"EmpresaEquipes[0].EquipeId\": [\n            \"The value 'wer' is not valid for EquipeId.\"\n        ],\n        \"EmpresaEquipes[0].EmpresaId\": [\n            \"The value '' is invalid.\"\n        ]\n    },\n    \"traceId\": \"00-62f24a594e703f85cf927b5103410f09-5efa5b633a526e0c-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[VAL] Campo \"Empresas e Equipes\" inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica erro de validação\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.status).to.eql(400);\r",
+									"    pm.expect(response.title).to.include(\"validation errors\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo EmpresaEquipes está presente nos erros\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.errors).to.have.property(\"EmpresaEquipes\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "Cenário 15",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "7562",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c",
+									"disabled": true
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b",
+									"disabled": true
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-15",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-08-15",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[VAL] Campo \"Empresas e Equipes\" inexistente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "Cenário 15",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "7562",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c",
+											"disabled": true
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b",
+											"disabled": true
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-15",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-15",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Fri, 03 Jul 2026 15:25:07 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=EDBXDX8xvkCd99GgPAyBBUQ64ndyYs1zfsWh%2FSgUXzmsXve4NtvN3kfvNop8Z8hMPMqL2Yj9nQn%2FR1a3cok380N4j%2Bw6CZYoaGvgQVSn0uMoSzh%2Bby7VJIo8Gcm9a%2BO00I1LMCQuOeTTJgl8GMOjISD1ljREyw%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a156e6a8cd960131-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"errors\": {\n        \"EmpresaEquipes\": [\n            \"The EmpresaEquipes field is required.\"\n        ]\n    },\n    \"traceId\": \"00-d01561937d62c646e7d4c13234a8ee84-2cb5108585b23802-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[VAL] Campo \"Código\" vazio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica falha\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.success).to.be.false;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Nenhuma campanha foi criada (data é nulo)\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.data).to.be.null;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "Cenário 12",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-15",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-08-15",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[VAL] Campo \"Código\" vazio",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "teste código",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-15",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-15",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Fri, 03 Jul 2026 16:15:22 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=6aMSGU03%2FsjJSCdrrKOG0jOswLw%2FUFYCuef%2FNWR8FsnER%2B5CPT%2FHRz4%2BylzXYOXNn7tgZCBnvAcrdAjSgYvZq28RbXkkyK%2BK%2BhEQEdCHmJf7j7NGdxHFrXDTeDwCzFZx%2BR7JQpt%2BS0X4ZJYJ1qxeFsrzws3SAA%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a15730462e813b9a-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Código não pode ser vazio.\",\n    \"data\": null,\n    \"error\": \"WebsupplyConnect.Application.Common.AppException: Código não pode ser vazio.\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 47\\r\\n   at WebsupplyConnect.Application.Services.Lead.CampanhaWriterService.CriarCampanhaAsync(CriarCampanhaApiDTO dto, Boolean commit) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.Application\\\\Services\\\\Lead\\\\CampanhaWriterService.cs:line 109\\r\\n   at WebsupplyConnect.API.Controllers.Campanha.CampanhaController.CriarCampanha(CriarCampanhaDTO request) in D:\\\\a\\\\WebsupplyConnectSolution\\\\WebsupplyConnectSolution\\\\src\\\\WebsupplyConnect.API\\\\Controllers\\\\Campanha\\\\CampanhaController.cs:line 64\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[VAL] Campo \"Código\" inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica erro de validação\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.status).to.eql(400);\r",
+									"    pm.expect(response.title).to.include(\"validation errors\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo Codigos está presente nos erros\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.errors).to.have.property(\"Codigos\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "Cenário 12",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70",
+									"disabled": true
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-15",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-08-15",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[VAL] Campo \"Código\" inexistente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "teste código",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70",
+											"disabled": true
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-15",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-15",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Fri, 03 Jul 2026 16:15:47 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=UQYeiH085MuVgnCC04%2FbThZahtZnPWIkI0lHPbQqXBBlwi6NPAtCqeYyZVVYpwA7HjTNIuisEs9g4%2F2rpI0GbRqnY%2BQfALibYDnTNbJtEyJUJhscmXBhY9PNHKFnZ%2F%2FphLTmIij7XEuZTIIGTu7w8iUz6kNZyQ%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a15730e43f693b9a-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"errors\": {\n        \"Codigos\": [\n            \"The Codigos field is required.\"\n        ]\n    },\n    \"traceId\": \"00-141b6beb81d2cbae672367459ef94815-f52e6893db36e207-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[VAL] Campo \"Nome\" inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica erro de validação\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.status).to.eql(400);\r",
+									"    pm.expect(response.title).to.include(\"validation errors\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo Nome está presente nos erros\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.errors).to.have.property(\"Nome\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280",
+									"disabled": true
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp}}",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-15",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-08-15",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[VAL] Campo \"Nome\" inexistente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280",
+											"disabled": true
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp}}",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-15",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-15",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Mon, 06 Jul 2026 15:37:34 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=hZ7mRfsISF%2FJ3fhSen0JMJAvZqsO1TTXHfF2lUIPOaRjCax6ni0Q5KlfcQhgVNjCQboXomH1jGCxfw1EKrcm5kUj9yEm6ShrS%2Fi5Lweql2YPiPNEEujbP6G2%2Bwe2STyjRXqXFyii1iXTovbv7Lal5i7oaTpgWA%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a16fb104ed6af24f-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"errors\": {\n        \"Nome\": [\n            \"The Nome field is required.\"\n        ]\n    },\n    \"traceId\": \"00-51fc7b72c6495d5e6b3f069ce0af39d1-ad7bc40c7025c47c-00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[VAL] Campo \"Nome\" vazio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta indica erro de validação\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.status).to.eql(400);\r",
+									"    pm.expect(response.title).to.include(\"validation errors\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Campo Nome está presente nos erros\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.errors).to.have.property(\"Nome\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nome",
+									"value": "",
+									"type": "text",
+									"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+								},
+								{
+									"key": "Codigos",
+									"value": "{{timestamp}}",
+									"type": "text",
+									"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+								},
+								{
+									"key": "empresaEquipes[0].empresaId",
+									"value": "31",
+									"type": "text",
+									"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+								},
+								{
+									"key": "empresaEquipes[0].equipeId",
+									"value": "15",
+									"type": "text",
+									"uuid": "14325770-f842-4d04-950b-818627609b9b"
+								},
+								{
+									"key": "DataInicio",
+									"value": "2026-07-15",
+									"type": "text",
+									"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+								},
+								{
+									"key": "DataFim",
+									"value": "2026-08-15",
+									"type": "text",
+									"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+							"protocol": "https",
+							"host": [
+								"api",
+								"homologacao",
+								"websupplyconnect",
+								"com"
+							],
+							"path": [
+								"api",
+								"Campanha"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[VAL] Campo \"Nome\" vazio",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Nome",
+											"value": "",
+											"type": "text",
+											"uuid": "64a1dc05-c9c8-4017-8403-1a9027b50280"
+										},
+										{
+											"key": "Codigos",
+											"value": "{{timestamp}}",
+											"type": "text",
+											"uuid": "606b22a2-7ba0-4d3c-bb2d-f05a09a52b70"
+										},
+										{
+											"key": "empresaEquipes[0].empresaId",
+											"value": "31",
+											"type": "text",
+											"uuid": "f6af4059-b8d9-42f6-9346-40f694f3da2c"
+										},
+										{
+											"key": "empresaEquipes[0].equipeId",
+											"value": "15",
+											"type": "text",
+											"uuid": "14325770-f842-4d04-950b-818627609b9b"
+										},
+										{
+											"key": "DataInicio",
+											"value": "2026-07-15",
+											"type": "text",
+											"uuid": "0d01976d-a37d-498d-8ff4-a2cd2b9bc314"
+										},
+										{
+											"key": "DataFim",
+											"value": "2026-08-15",
+											"type": "text",
+											"uuid": "954e01d6-8099-4f75-b97a-74831635d8cd"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.homologacao.websupplyconnect.com/api/Campanha",
+									"protocol": "https",
+									"host": [
+										"api",
+										"homologacao",
+										"websupplyconnect",
+										"com"
+									],
+									"path": [
+										"api",
+										"Campanha"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": ":status",
+									"value": 400
+								},
+								{
+									"key": "date",
+									"value": "Mon, 06 Jul 2026 15:38:37 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/problem+json; charset=utf-8"
+								},
+								{
+									"key": "server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "request-context",
+									"value": "appId=cid-v1:7d93dc8c-4935-4a9a-a56f-3cc1f303f142"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "nel",
+									"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+								},
+								{
+									"key": "report-to",
+									"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=LghPIfEevE1kUc0lOVZic3uV485VEBckGGnEPpBhT9dx%2F35FIxxYgQ%2Bd1Uqn1OpR7FcrbdJJqlmzkkoXJlCdgq7EPxir40wgxT%2FVrfgb%2Fy6wnD6p7GLrjeDTXpPnE19vHiwa60CyyFs0OjkH7qqi6t5R4QNYiQ%3D%3D\"}]}"
+								},
+								{
+									"key": "cf-ray",
+									"value": "a16fb2924d68f24f-GRU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"errors\": {\n        \"Nome\": [\n            \"The Nome field is required.\"\n        ]\n    },\n    \"traceId\": \"00-ca6d2f8512590396aaed4d3e3a8655db-7e645ddf3368eebe-00\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"const base = Date.now().toString().slice(-3);\r",
+					"\r",
+					"pm.environment.set(\"timestamp\", base);\r",
+					"pm.environment.set(\"timestamp2\", base + \"a\");\r",
+					"pm.environment.set(\"timestamp3\", base + \"1\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base",
+			"value": ""
+		},
+		{
+			"key": "timestamp",
+			"value": ""
+		},
+		{
+			"key": "timestamp2",
+			"value": ""
+		},
+		{
+			"key": "timestamp3",
+			"value": ""
+		}
+	]
+}
