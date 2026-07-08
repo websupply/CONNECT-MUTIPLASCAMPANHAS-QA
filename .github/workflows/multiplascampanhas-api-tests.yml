@@ -88,3 +88,4 @@ jobs:
           from: "QA Bot <${{ secrets.MAIL_USERNAME }}>"
           body: file://reports/email-body.txt
           html_body: file://reports/email-body.html
+          
