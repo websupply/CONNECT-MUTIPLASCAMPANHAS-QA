@@ -4,7 +4,7 @@ Testes automatizados (Postman/Newman) dessa funcionalidade.
 
 ## Dashboard
 
-[Ver dashboard de qualidade](https://adamcy11.github.io/CONNECT-MUTIPLASCAMPANHAS-QA/)
+[Ver dashboard de qualidade](https://websupply.github.io/CONNECT-MUTIPLASCAMPANHAS-QA/)
 
 
 O dashboard mostra a taxa de sucesso, resultado por requisição, detalhamento de falhas e histórico das últimas execuções.
