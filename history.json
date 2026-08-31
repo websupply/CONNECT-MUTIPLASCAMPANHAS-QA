@@ -1,0 +1,167 @@
+[
+  {
+    "timestamp": "08/07/2026, 11:10:56",
+    "successRate": 0,
+    "requestsTotal": 0,
+    "requestsFailed": 0,
+    "assertionsTotal": 0,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/adamcy11/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/28949222535"
+  },
+  {
+    "timestamp": "08/07/2026, 11:14:51",
+    "successRate": 0,
+    "requestsTotal": 0,
+    "requestsFailed": 0,
+    "assertionsTotal": 0,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/adamcy11/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/28949484548"
+  },
+  {
+    "timestamp": "08/07/2026, 11:18:03",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/adamcy11/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/28949698175"
+  },
+  {
+    "timestamp": "08/07/2026, 11:25:15",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/adamcy11/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/28950185384"
+  },
+  {
+    "timestamp": "08/07/2026, 11:26:34",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/adamcy11/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/28950278548"
+  },
+  {
+    "timestamp": "08/07/2026, 12:01:59",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/28952797366"
+  },
+  {
+    "timestamp": "13/07/2026, 10:11:54",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/29252798759"
+  },
+  {
+    "timestamp": "20/07/2026, 08:54:55",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/29740200266"
+  },
+  {
+    "timestamp": "27/07/2026, 09:02:51",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/30264258669"
+  },
+  {
+    "timestamp": "03/08/2026, 09:03:49",
+    "successRate": 0,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 59,
+    "failuresCount": 64,
+    "status": "failed",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/30811972322"
+  },
+  {
+    "timestamp": "03/08/2026, 13:42:57",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/30833377495"
+  },
+  {
+    "timestamp": "10/08/2026, 08:21:54",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/31383134935"
+  },
+  {
+    "timestamp": "17/08/2026, 08:05:33",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/32023196472"
+  },
+  {
+    "timestamp": "24/08/2026, 08:07:11",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/32720171113"
+  },
+  {
+    "timestamp": "31/08/2026, 08:02:27",
+    "successRate": 100,
+    "requestsTotal": 17,
+    "requestsFailed": 0,
+    "assertionsTotal": 59,
+    "assertionsFailed": 0,
+    "failuresCount": 0,
+    "status": "ok",
+    "runUrl": "https://github.com/websupply/CONNECT-MUTIPLASCAMPANHAS-QA/actions/runs/33385067894"
+  }
+]
